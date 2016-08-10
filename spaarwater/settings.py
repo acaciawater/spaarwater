@@ -25,6 +25,8 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+SITE_ID = 1
+
 ALLOWED_HOSTS = ['.acaciadata.com', 'localhost']
 
 # Application definition
@@ -40,14 +42,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'django.contrib.sites',
-    'django_extensions', # for ERD
     'bootstrap3',
     'registration',
-    'smart_selects',
     'acacia',
     'acacia.data',
     'acacia.data.knmi',
-    'acacia.data.events',
+    'acacia.mqtt',
     'spaarwater',
 )
 
@@ -75,13 +75,11 @@ ROOT_URLCONF = 'spaarwater.urls'
 
 WSGI_APPLICATION = 'spaarwater.wsgi.application'
 
+
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+
 DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.contrib.gis.db.backends.spatialite',
-#         'NAME': os.path.join(BASE_DIR, 'acaciadata.db'),                      # Or path to database file if using sqlite3.
-#     },
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.mysql',
         'NAME': 'spaarwater',                      # Or path to database file if using sqlite3.
@@ -125,7 +123,7 @@ IMG_URL = '/img/'
 IMG_ROOT = os.path.join(os.path.dirname(BASE_DIR),'img')
 
 # Grapelli admin
-GRAPPELLI_ADMIN_TITLE='Beheer van Spaarwater meetgegevens'
+GRAPPELLI_ADMIN_TITLE='Beheer van spaarwater meetgegevens'
 
 # Celery stuff
 #BROKER_URL = 'django://'
@@ -139,20 +137,6 @@ ACCOUNT_ACTIVATION_DAYS = 7
 LOGIN_REDIRECT_URL = '/data/'
 
 LOGGING_ROOT = os.path.join(BASE_DIR, 'logs')
-
-# EMAIL_HOST='smtp.gmail.com'
-# EMAIL_PORT=587
-# EMAIL_HOST_USER='grondwatertoolbox@gmail.com'
-# EMAIL_HOST_PASSWORD='pw4toolbox'
-# EMAIL_USE_TLS = True
-
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-EMAIL_HOST='acaciadata.com'
-EMAIL_PORT=25
-EMAIL_HOST_USER='webmaster@acaciadata.com'
-EMAIL_HOST_PASSWORD='acaciawater'
-EMAIL_USE_TLS = True
 
 # Logging
 LOGGING = {
@@ -171,7 +155,7 @@ LOGGING = {
         'update': {
             'level': 'DEBUG',
             'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': os.path.join(LOGGING_ROOT, 'updater.log'),
+            'filename': os.path.join(LOGGING_ROOT, 'update.log'),
             'when': 'D',
             'interval': 1, # every day a new file
             'backupCount': 0,
@@ -184,15 +168,6 @@ LOGGING = {
             'when': 'D',
             'interval': 1, # every day a new file
             'backupCount': 0,
-        },
-        'email': {
-            'level': 'DEBUG',
-            'class': 'acacia.data.loggers.BufferingEmailHandler',
-            'fromaddr': 'webmaster@acaciadata.com',
-            'subject': 'spaarwater.acaciadata.com update',
-            'capacity': 10000,
-            'interval': 30,
-            'formatter': 'update',
         },
     },
     'formatters': {
@@ -222,4 +197,3 @@ LOGGING = {
     },
 }
 
-# from secrets import *
