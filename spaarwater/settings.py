@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-os.sys.path.append('/home/theo/acaciadata.com/acacia')
+os.sys.path.append('/home/stephane/git/acaciadata')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -36,9 +36,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
+    'django.contrib.sites',
     'django_extensions', # for ERD
     'bootstrap3',
-    'south',
     'registration',
     'smart_selects',
     'acacia',
