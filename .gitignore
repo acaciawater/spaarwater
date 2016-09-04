@@ -87,3 +87,10 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# django
+logs/
+media/
+static/
+.settings/
+
