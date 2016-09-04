@@ -12,13 +12,14 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-os.sys.path.append('/home/stephane/git/acaciadata')
+os.sys.path.append('/home/theo/texelmeet/acaciadata')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'lyh)8hhwcz*a7i-o9ndk(7j0(%e25o3ji^7e+anqq4e)f^7#y('
+GOOGLE_MAPS_API_KEY = 'AIzaSyBZoEnkbR2kagMCHyT-CiuBzJOW3bkexBA'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -47,7 +48,6 @@ INSTALLED_APPS = (
     'acacia',
     'acacia.data',
     'acacia.data.knmi',
-    'acacia.mqtt',
     'spaarwater',
 )
 
