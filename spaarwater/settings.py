@@ -20,6 +20,7 @@ os.sys.path.append('/home/theo/texelmeet/acaciadata')
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'lyh)8hhwcz*a7i-o9ndk(7j0(%e25o3ji^7e+anqq4e)f^7#y('
 GOOGLE_MAPS_API_KEY = 'AIzaSyBZoEnkbR2kagMCHyT-CiuBzJOW3bkexBA'
+OPENWEATHER_APIKEY = 'cbfee8a09865749b6a3a6781c1acfcca'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,7 +76,6 @@ ROOT_URLCONF = 'spaarwater.urls'
 
 WSGI_APPLICATION = 'spaarwater.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
@@ -112,15 +112,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-UPLOAD_DATAFILES = 'datafiles' 
-UPLOAD_THUMBNAILS = 'thumbnails' 
-UPLOAD_IMAGES = 'images' 
-
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+EXPORT_URL = '/export/'
+EXPORT_ROOT = os.path.join(BASE_DIR, 'export')
 
 # voor plaatjes website provincie: spaarwater.acaciadata.com/img/management.png
 IMG_URL = '/img/'
 IMG_ROOT = os.path.join(os.path.dirname(BASE_DIR),'img')
+
+UPLOAD_DATAFILES = 'datafiles' 
+UPLOAD_THUMBNAILS = 'thumbnails' 
+UPLOAD_IMAGES = 'images' 
 
 # Grapelli admin
 GRAPPELLI_ADMIN_TITLE='Beheer van spaarwater meetgegevens'
@@ -196,4 +197,3 @@ LOGGING = {
         },
     },
 }
-
