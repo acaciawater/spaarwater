@@ -38,9 +38,9 @@ class VisualizeView(TemplateView):
             context['opvang'] = str(opvang.value)
             context['afvoer'] = str(afvoer.value)
             if min(opvang.last_update,afvoer.last_update) < utc.localize((datetime.datetime.now() - datetime.timedelta(days=3))):
-                context['too_old'] = 0
-            else:
                 context['too_old'] = 1
+            else:
+                context['too_old'] = 0
         if type == 'gauge':
             kf = KeyFigure.objects.get(pk=keyfigure_keys[0])
             context['value'] = str(kf.value)
