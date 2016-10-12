@@ -4,7 +4,7 @@ from django.conf import settings
 
 from django.contrib import admin
 from .views import HomeView, DashGroupView, OverviewView
-from .pictures import PFDripView, PFRefView, InfiltratieView, OpslagView
+from .pictures import PFDripView, PFRefView, InfiltratieView, OpslagView, VisualizeView
 
 admin.autodiscover()
 
@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     url(r'^pfref/(?P<pk>\d+)$', PFRefView.as_view()),
     url(r'^infiltratie/(?P<pk>\d+)$', InfiltratieView.as_view()),
     url(r'^opslag/(?P<pk>\d+)$', OpslagView.as_view()),
-
+    url(r'^visualize$', VisualizeView.as_view()),
     url(r'^(?P<name>\w+)$', DashGroupView.as_view(), name='spaarwater-dashboard'),
     url(r'^chaining/', include('smart_selects.urls'))
 )
