@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -8,8 +8,7 @@ from .pictures import PFDripView, PFRefView, InfiltratieView, OpslagView
 
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    url(r'^$', HomeView.as_view(), name='home'),
+urlpatterns = [url(r'^$', HomeView.as_view(), name='home'),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^data/', include('acacia.data.urls',namespace='acacia')),
@@ -21,14 +20,14 @@ urlpatterns = patterns('',
 
     url(r'^(?P<name>\w+)$', DashGroupView.as_view(), name='spaarwater-dashboard'),
     url(r'^chaining/', include('smart_selects.urls'))
-)
+]
+
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.IMG_URL, document_root=settings.IMG_ROOT)
 
 from django.contrib.auth import views as auth_views
-urlpatterns += patterns('',
-    url(r'^password/change/$',
+urlpatterns += [url(r'^password/change/$',
                     auth_views.password_change,
                     name='password_change'),
     url(r'^password/change/done/$',
@@ -47,4 +46,5 @@ urlpatterns += patterns('',
                     auth_views.password_reset_confirm,
                     name='password_reset_confirm'),
     url(r'^accounts/', include('registration.backends.default.urls'))    
-)
+]
+
