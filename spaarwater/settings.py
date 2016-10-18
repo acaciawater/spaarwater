@@ -17,11 +17,6 @@ os.sys.path.append('/home/theo/texelmeet/acaciadata')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'lyh)8hhwcz*a7i-o9ndk(7j0(%e25o3ji^7e+anqq4e)f^7#y('
-GOOGLE_MAPS_API_KEY = 'AIzaSyBZoEnkbR2kagMCHyT-CiuBzJOW3bkexBA'
-OPENWEATHER_APIKEY = 'cbfee8a09865749b6a3a6781c1acfcca'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -78,17 +73,6 @@ WSGI_APPLICATION = 'spaarwater.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.mysql',
-        'NAME': 'spaarwater',                      # Or path to database file if using sqlite3.
-        'USER': 'acacia',                      # Not used with sqlite3.
-        'PASSWORD': 'Beaumont1',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -162,6 +146,14 @@ LOGGING = {
             'backupCount': 0,
             'formatter': 'update'
         },
+        'notify': {
+            'level': 'INFO',
+            'class': 'acacia.data.loggers.BufferingEmailHandler',
+            'fromaddr': 'noreply@acaciadata.com',
+            'subject': 'acaciadata.com update',
+            'capacity': 20000,
+            'formatter': 'update'
+        },
         'django': {
             'level': 'DEBUG',
             'class': 'logging.handlers.TimedRotatingFileHandler',
@@ -176,7 +168,7 @@ LOGGING = {
             'format': '%(levelname)s %(asctime)s %(name)s: %(message)s'
         },
         'update' : {
-            'format': '%(levelname)s %(asctime)s %(datasource)s: %(message)s'
+            'format': '%(levelname)s %(asctime)s %(source)s: %(message)s'
         }
     },
     'loggers': {
@@ -185,7 +177,7 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-        'acacia.data': {
+        'acacia': {
             'handlers': ['file',],
             'level': 'DEBUG',
             'propagate': True,
@@ -195,5 +187,12 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'update.notify' : {
+            'handlers': ['notify', ],
+            'level': 'INFO',
+            'propagate': True,
+        },
     },
 }
+
+from secrets import *
