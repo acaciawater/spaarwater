@@ -1,17 +1,30 @@
+"""spaarwater URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/1.10/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.conf.urls import url, include
+    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+"""
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
-
 from django.contrib import admin
-from .views import HomeView, DashGroupView, OverviewView
-from .pictures import PFDripView, PFRefView, InfiltratieView, OpslagView
 
-admin.autodiscover()
+from views import HomeView, DashGroupView, OverviewView
+from pictures import PFDripView, PFRefView, InfiltratieView, OpslagView
 
 urlpatterns = [url(r'^$', HomeView.as_view(), name='home'),
     url(r'^grappelli/', include('grappelli.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^data/', include('acacia.data.urls',namespace='acacia')),
+    url(r'^admin/', admin.site.urls),
+    url(r'^data/', include('acacia.data.urls', namespace='acacia')),
     url(r'^view/(?P<pk>\d+)$', OverviewView.as_view(), name='overview'),
     url(r'^pfdrip/(?P<pk>\d+)$', PFDripView.as_view()),
     url(r'^pfref/(?P<pk>\d+)$', PFRefView.as_view()),
@@ -47,4 +60,3 @@ urlpatterns += [url(r'^password/change/$',
                     name='password_reset_confirm'),
     url(r'^accounts/', include('registration.backends.default.urls'))    
 ]
-
