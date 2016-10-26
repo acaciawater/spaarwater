@@ -46,7 +46,7 @@ INSTALLED_APPS = (
 )
 
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -148,14 +148,14 @@ LOGGING = {
             'backupCount': 0,
             'formatter': 'update'
         },
-        'notify': {
-            'level': 'INFO',
-            'class': 'acacia.data.loggers.BufferingEmailHandler',
-            'fromaddr': 'noreply@acaciadata.com',
-            'subject': 'acaciadata.com update',
-            'capacity': 20000,
-            'formatter': 'update'
-        },
+#         'notify': {
+#             'level': 'INFO',
+#             'class': 'acacia.data.loggers.BufferingEmailHandler',
+#             'fromaddr': 'noreply@acaciadata.com',
+#             'subject': 'acaciadata.com update',
+#             'capacity': 20000,
+#             'formatter': 'update'
+#         },
         'django': {
             'level': 'DEBUG',
             'class': 'logging.handlers.TimedRotatingFileHandler',
@@ -189,11 +189,11 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-        'update.notify' : {
-            'handlers': ['notify', ],
-            'level': 'INFO',
-            'propagate': True,
-        },
+#         'update.notify' : {
+#             'handlers': ['notify', ],
+#             'level': 'INFO',
+#             'propagate': True,
+#         },
     },
 }
 
