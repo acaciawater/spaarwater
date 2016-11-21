@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['.acaciadata.com', 'localhost']
 
 INSTALLED_APPS = (
     'grappelli',
+    'filebrowser',
     'polymorphic',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -109,6 +110,8 @@ UPLOAD_IMAGES = 'images'
 
 # Grapelli admin
 GRAPPELLI_ADMIN_TITLE='Beheer van spaarwater meetgegevens'
+
+FILEBROWSER_DIRECTORY='uploads/'
 
 # Celery stuff
 #BROKER_URL = 'django://'

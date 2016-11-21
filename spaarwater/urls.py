@@ -5,10 +5,12 @@ from django.conf import settings
 from django.contrib import admin
 from .views import HomeView, DashGroupView, OverviewView
 from .pictures import PFDripView, PFRefView, InfiltratieView, OpslagView
+from filebrowser.sites import site
 
 admin.autodiscover()
 
 urlpatterns = [url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^data/', include('acacia.data.urls',namespace='acacia')),
