@@ -112,8 +112,8 @@ GRAPPELLI_ADMIN_TITLE='Beheer van spaarwater meetgegevens'
 
 # Celery stuff
 #BROKER_URL = 'django://'
-CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
-INSTALLED_APPS += ('kombu.transport.django','djcelery',)                  
+#CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
+#INSTALLED_APPS += ('kombu.transport.django','djcelery',)                  
 
 #CELERY_ALWAYS_EAGER = DEBUG
 
