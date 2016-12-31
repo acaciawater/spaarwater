@@ -40,11 +40,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'django.contrib.sites',
+    'django_extensions',
     'bootstrap3',
     'registration',
     'acacia',
     'acacia.data',
     'acacia.data.knmi',
+    'acacia.validation',
     'spaarwater',
 )
 
@@ -154,6 +156,14 @@ LOGGING = {
             'class': 'acacia.data.loggers.BufferingEmailHandler',
             'fromaddr': 'noreply@acaciadata.com',
             'subject': 'acaciadata.com update',
+            'capacity': 20000,
+            'formatter': 'update'
+        },
+        'validation': {
+            'level': 'INFO',
+            'class': 'acacia.data.loggers.BufferingEmailHandler',
+            'fromaddr': 'noreply@acaciadata.com',
+            'subject': 'acaciadata.com validation',
             'capacity': 20000,
             'formatter': 'update'
         },
