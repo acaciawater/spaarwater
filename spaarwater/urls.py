@@ -14,6 +14,7 @@ urlpatterns = [url(r'^$', HomeView.as_view(), name='home'),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^data/', include('acacia.data.urls',namespace='acacia')),
+    url(r'^validation/', include('acacia.validation.urls')),
     url(r'^view/(?P<pk>\d+)$', OverviewView.as_view(), name='overview'),
     url(r'^pfdrip/(?P<pk>\d+)$', PFDripView.as_view()),
     url(r'^pfref/(?P<pk>\d+)$', PFRefView.as_view()),
@@ -21,7 +22,7 @@ urlpatterns = [url(r'^$', HomeView.as_view(), name='home'),
     url(r'^opslag/(?P<pk>\d+)$', OpslagView.as_view()),
 
     url(r'^(?P<name>\w+)$', DashGroupView.as_view(), name='spaarwater-dashboard'),
-    url(r'^chaining/', include('smart_selects.urls'))
+    url(r'^chaining/', include('smart_selects.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
