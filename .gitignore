@@ -94,3 +94,6 @@ media/
 static/
 .settings/
 
+/export/
+/cert.crt
+/cert.key
