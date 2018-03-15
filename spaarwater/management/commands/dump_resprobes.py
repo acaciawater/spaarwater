@@ -14,7 +14,7 @@ import os,logging
 import pandas as pd
 
 logger = logging.getLogger('acacia.data')
-resprobes = (502,681)
+resprobes = (502,687)
 
 class Command(BaseCommand):
     args = ''
